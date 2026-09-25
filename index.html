@@ -29,10 +29,13 @@
 
     <!-- Header / Logo -->
     <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 text-center lg:text-left flex justify-center lg:justify-start items-center">
-            <h1 class="text-3xl font-extrabold text-leclinique tracking-tight">
+        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-leclinique tracking-tight">
                 <span class="text-blue-500">❖</span> Le Cliniqué
             </h1>
+            <a href="https://leclinique.co/" target="_blank" class="text-sm font-semibold text-blue-600 hover:underline hidden md:block">
+                Visitar Web Oficial
+            </a>
         </div>
     </header>
 
@@ -53,6 +56,11 @@
             <a href="#formulario" class="inline-block bg-leclinique text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 btn-hover w-full text-center lg:w-auto shadow-lg">
                 Agenda tu Valoración
             </a>
+            <div class="mt-6">
+                <a href="https://leclinique.co/" target="_blank" class="text-sm text-gray-500 hover:text-blue-600 underline">
+                    ¿Quieres conocer todos nuestros servicios? Visita leclinique.co
+                </a>
+            </div>
         </div>
         
         <!-- Imagen Principal -->
@@ -98,10 +106,25 @@
             </div>
 
             <form id="leadForm" class="space-y-6">
+                <!-- Nombre -->
                 <div>
                     <label for="nombre" class="block text-sm font-bold text-gray-700 mb-1">Nombre Completo *</label>
                     <input type="text" id="nombre" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Ej. Juan Pérez">
                 </div>
+                
+                <!-- Ciudad -->
+                <div>
+                    <label for="ciudad" class="block text-sm font-bold text-gray-700 mb-1">Ciudad *</label>
+                    <input type="text" id="ciudad" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Ej. Bogotá">
+                </div>
+
+                <!-- Fecha del proceso -->
+                <div>
+                    <label for="fecha" class="block text-sm font-bold text-gray-700 mb-1">¿Para cuándo tienes planeado realizarte el procedimiento? *</label>
+                    <input type="date" id="fecha" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                </div>
+
+                <!-- Correo (Opcional) -->
                 <div>
                     <label for="correo" class="block text-sm font-bold text-gray-700 mb-1">Correo Electrónico (Opcional)</label>
                     <input type="email" id="correo" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="ejemplo@correo.com">
@@ -120,11 +143,16 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-leclinique text-white py-8 text-center border-t border-gray-700">
+    <footer class="bg-leclinique text-white py-12 text-center border-t border-gray-700">
         <div class="max-w-5xl mx-auto px-6">
-            <h4 class="text-xl font-bold mb-4">❖ Le Cliniqué</h4>
-            <p class="text-gray-400 text-sm mb-2">Restauración y Trasplante Capilar</p>
-            <p class="text-gray-400 text-sm">© 2024 Le Cliniqué. Todos los derechos reservados.</p>
+            <h4 class="text-2xl font-bold mb-4">❖ Le Cliniqué</h4>
+            <p class="text-gray-400 text-sm mb-6">Restauración y Trasplante Capilar</p>
+            <div class="mb-6">
+                <a href="https://leclinique.co/" target="_blank" class="inline-block border border-blue-500 text-blue-400 hover:bg-blue-600 hover:text-white transition duration-300 font-bold py-2 px-6 rounded-full text-sm">
+                    Ver más información en leclinique.co
+                </a>
+            </div>
+            <p class="text-gray-500 text-xs mt-8">© 2024 Le Cliniqué. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -135,6 +163,8 @@
 
             // Obtener los datos del formulario
             const nombre = document.getElementById('nombre').value.trim();
+            const ciudad = document.getElementById('ciudad').value.trim();
+            const fecha = document.getElementById('fecha').value;
             const correo = document.getElementById('correo').value.trim();
 
             // NÚMERO DE WHATSAPP DE LA CLÍNICA (Cámbialo aquí)
@@ -142,13 +172,13 @@
             const numeroWhatsApp = "573000000000"; 
 
             // Construir el mensaje
-            let mensaje = `¡Hola Le Cliniqué! 👋\n\nSoy *${nombre}*, acabo de llenar el formulario en su página web.\n\nQuiero agendar mi *valoración especializada de $50.000* para el injerto capilar.`;
+            let mensaje = `¡Hola Le Cliniqué! 👋\n\nSoy *${nombre}* de la ciudad de *${ciudad}* y acabo de llenar el formulario en su página web.\n\nQuiero agendar mi *valoración especializada de $50.000* para el injerto capilar.\n\n📅 Tengo planeado realizarme el procedimiento para la fecha: *${fecha}*.`;
             
             if (correo !== "") {
-                mensaje += `\nMi correo es: ${correo}`;
+                mensaje += `\n✉️ Mi correo es: ${correo}`;
             }
             
-            mensaje += `\n\nQuedo atento/a para realizar el pago y elegir la fecha de mi cita.`;
+            mensaje += `\n\nQuedo atento/a para realizar el pago de la valoración y agendar mi cita.`;
 
             // Codificar el mensaje para la URL
             const mensajeCodificado = encodeURIComponent(mensaje);
